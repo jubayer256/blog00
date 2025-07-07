@@ -1,0 +1,49 @@
+.profile-wrapper {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #F9F9F9;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sidebar h4 {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: black;
+    }
+
+    .sidebar .nav-link {
+      color: black;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      transition: background 0.2s ease;
+      text-decoration: none;
+    }
+
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      background-color: #EAEAEA;
+      color: black;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+      background-color: white;
+    }
+
+    .form-control, .form-select {
+      font-size: 0.9rem;
+    }
+
+    .table td, .table th {
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }

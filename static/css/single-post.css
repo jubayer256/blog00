@@ -1,0 +1,34 @@
+    .post-header {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    .post-meta {
+      color: #888;
+      font-size: 0.9rem;
+    }
+    .image-div{
+        text-align: center;
+    }
+    .post-image {
+      width: auto;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
+    }
+    .post-tags {
+      margin-top: 30px;
+    }
+    .tag {
+      background-color: #e9ecef;
+      padding: 5px 12px;
+      margin-right: 8px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      display: inline-block;
+    }

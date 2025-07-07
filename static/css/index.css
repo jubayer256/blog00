@@ -1,0 +1,53 @@
+    .post-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      background-color: #fff;
+      padding: 15px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .post-username {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    h4 {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .category-btn {
+      margin-right: 6px;
+      padding: 4px 12px;
+      font-size: 0.85rem;
+    }
+    

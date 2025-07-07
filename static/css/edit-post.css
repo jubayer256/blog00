@@ -1,0 +1,28 @@
+.update-wrapper {
+      max-width: 900px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-control, .form-select {
+      font-size: 0.95rem;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .preview-image {
+      max-height: 180px;
+      margin-bottom: 10px;
+      object-fit: contain;
+      border: 1px solid #ccc;
+      padding: 5px;
+      background: #f8f8f8;
+    }
+    .ck-editor__editable {
+      min-height: 300px;
+    }
