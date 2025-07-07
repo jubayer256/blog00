@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block add_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block add_content %}
+
+<div class="login-container">
+  <h3 class="text-center mb-4">Login to Your Account</h3>
+  <form action="/login" method="POST">
+    <div class="mb-3">
+      <label for="email_or_username" class="form-label">Email or Username</label>
+      <input type="text" class="form-control" id="email_or_username" name="email_or_username" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+
+    <p class="login-link mt-3">Don't have an account? <a href="/signup">Sign up</a></p>
+  </form>
+</div>
+
+{% endblock %}

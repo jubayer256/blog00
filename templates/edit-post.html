@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block add_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/edit-post.css') }}">
+  <script src="{{ url_for('static', filename='/js/ckeditor.js') }}"></script>
+{% endblock %}
+
+{% block add_content %}
+
+<div class="update-wrapper">
+  <h3 class="mb-4">Update Blog Post</h3>
+  <form method="POST" action="/edit-post/{{ post[0] }}" enctype="multipart/form-data">
+    
+    <!-- Title -->
+    <div class="mb-3">
+      <label class="form-label">Post Title</label>
+      <input type="text" name="title" class="form-control" value="{{ post[1] }}" required>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select name="category" class="form-select" required>
+        {% for c in categories %}
+          <option value="{{ c }}" {{ "selected" if post[5] == c }}>{{ c }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Current Image -->
+    <div class="mb-3">
+      <label class="form-label">Current Image</label><br>
+      <img src="/static/img/post/{{ post[3] }}" class="preview-image" alt="Post Image">
+    </div>
+
+    <!-- Upload New Image -->
+    <div class="mb-3">
+      <label class="form-label">Change Image</label>
+      <input type="file" name="image" class="form-control">
+    </div>
+
+    <!-- Content -->
+    <div class="mb-3">
+      <label class="form-label">Post Content</label>
+      <textarea name="content" id="content" rows="8" class="form-control">{{ post[2] }}</textarea>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary">Update Post</button>
+  </form>
+</div>
+
+<script>
+    ClassicEditor
+      .create(document.querySelector('#content'))
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+
+{% endblock %}

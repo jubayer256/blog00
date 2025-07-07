@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block add_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block add_content %}
+
+<div class="container mt-4">
+  <!-- Post Sections -->
+  <h4>Most Popular</h4>
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">A short description of the post goes here.</p>
+          <div class="post-username">By JohnDoe</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">A short description of the post goes here.</p>
+          <div class="post-username">By JohnDoe</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">A short description of the post goes here.</p>
+          <div class="post-username">By JohnDoe</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">A short description of the post goes here.</p>
+          <div class="post-username">By JohnDoe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Newest</h4>
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">Latest update on tech and trends here.</p>
+          <div class="post-username">By JaneDoe</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">Latest update on tech and trends here.</p>
+          <div class="post-username">By JaneDoe</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">Latest update on tech and trends here.</p>
+          <div class="post-username">By JaneDoe</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">Latest update on tech and trends here.</p>
+          <div class="post-username">By JaneDoe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Trending</h4>
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">This post is trending among readers quickly.</p>
+          <div class="post-username">By Alex123</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">This post is trending among readers quickly.</p>
+          <div class="post-username">By Alex123</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">This post is trending among readers quickly.</p>
+          <div class="post-username">By Alex123</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card post-card" onclick="window.location.href='/post'">
+        <img src="{{ url_for('static', filename='img/image.png') }}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+          <p class="card-text">This post is trending among readers quickly.</p>
+          <div class="post-username">By Alex123</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+

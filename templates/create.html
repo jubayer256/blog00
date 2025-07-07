@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block add_css %}
+  <style>
+    .ck-editor__editable {
+      min-height: 300px;
+    }
+    .navbar-dark {
+      background-color: #000;
+    }
+  </style>
+  <script src="{{ url_for('static', filename='/js/ckeditor.js') }}"></script>
+{% endblock %}
+
+{% block add_content %}
+
+  <!-- Form Section -->
+  <div class="container my-5">
+    <div class="col-md-8 offset-md-2">
+      <h3 class="mb-4 text-center">Create New Post</h3>
+      <form method="POST" action="/create" enctype="multipart/form-data" novalidate>
+        
+        <!-- Title -->
+        <div class="mb-3">
+          <label class="form-label">Post Title</label>
+          <input type="text" name="title" class="form-control" required>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-3">
+          <label class="form-label">Post Image</label>
+          <input type="file" name="image" class="form-control">
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select name="category" class="form-select" required>
+            <option value="">-- Select Category --</option>
+            {% for c in categories %}
+              <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Tags -->
+        <!--
+        <div class="mb-3">
+          <label class="form-label">Tags (comma-separated)</label>
+          <input type="text" name="tags" class="form-control" placeholder="e.g. flask, webdev, tutorial">
+        </div>
+        -->
+
+        <!-- Content -->
+        <div class="mb-3">
+          <label class="form-label">Post Content</label>
+          <textarea id="content" name="content" class="form-control" required></textarea>
+        </div>
+
+        <div class="text-center">
+          <input type="submit" class="btn btn-primary px-4">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#content'))
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+
+
+{% endblock %}
+
+

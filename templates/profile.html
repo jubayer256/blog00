@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block add_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block add_content %}
+
+<div class="profile-wrapper">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h4>Profile</h4>
+    <ul class="nav flex-column">
+        <li class="nav-item"><a href="#myposts" class="nav-link active" data-bs-toggle="tab"><i class="bi bi-file-earmark-text me-2"></i> My Posts</a></li>
+      <li class="nav-item"><a href="#settings" class="nav-link" data-bs-toggle="tab"><i class="bi bi-gear me-2"></i> Profile Settings</a></li>
+      <li class="nav-item"><a href="/logout" class="nav-link"><i class="bi bi-gear me-2"></i>Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Content -->
+  <div class="content tab-content">
+    <!-- My Posts Tab -->
+    <div class="tab-pane fade show active" id="myposts">
+      <h3>My Posts</h3>
+      <table class="table table-bordered table-striped mt-3">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Category</th>
+            <th>Likes</th>
+            <th>Comments</th>
+            <th>Created</th>
+            <th style="width: 130px">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ post[1] }}</td>
+              <td>{{ post[6] }}</td>
+              <td>{{ post[5] }}</td>
+              <td>{{ post[10] }}</td>
+              <td>{{ post[11] }}</td>
+              <td>{{ post[7] | timestamp_to_datetime }}</td>
+              <td>
+                <a href="/edit-post/{{ post[0] }}" class="btn btn-sm btn-info">Edit</a>
+                <a href="/delete_own_post/{{ post[0] }}" class="btn btn-sm btn-danger">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+          <!-- More rows dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Settings Tab -->
+    <div class="tab-pane fade" id="settings">
+      <h3>Profile Settings</h3>
+      <form method="POST" action="/update_profile">
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" name="fullname" value="{{ user[0] }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" value="{{ user[1] }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" value="{{ user[2] }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Gender</label>
+          <select class="form-select" name="gender">
+            <option {{ "selected" if user[3]=="Male" }}>Male</option>
+            <option {{ "selected" if user[3]=="Female" }}>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+      </form>
+
+      <!-- Change password form -->
+      <hr class="my-4">
+      <h4>Change Password</h4>
+      <form method="POST" action="/update_password">
+        <div class="mb-3">
+          <label class="form-label">Current Password</label>
+          <input type="password" name="current_password" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">New Password</label>
+          <input type="password" name="new_password" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Confirm New Password</label>
+          <input type="password" name="confirm_password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-warning">Update Password</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

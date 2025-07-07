@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block add_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/posts.css') }}">
+{% endblock %}
+
+{% block add_content %}
+
+<!-- Filters Row -->
+<div class="container mt-4">
+  <div class="row align-items-center mb-4">
+    <div class="col-md-6 mb-2" id="category-links">
+      {% for c in categories %}
+        <a href="#" onclick="applyFilter('category', '{{ c }}')" class="btn btn-outline-primary category-btn">{{ c }}</a>
+      {% endfor %}
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <input type="text" id="searchInput" onkeydown="if(event.key==='Enter'){applyFilter('search', this.value);}" class="form-control me-2 w-50" placeholder="Search posts...">
+      <select id="sortSelect" onchange="applyFilter('sort', this.value)" class="form-select w-25">
+        <option selected>Sort by</option>
+        <option value="time_asc">Time (New > Old)</option>
+        <option value="time_desc">Time (Old > New)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Post Sections -->
+  <div class="row">
+    {% for post in posts %}
+      <div class="col-md-3 mb-4">
+        <div class="card post-card" onclick="window.location.href='/post/{{ post[0] }}'">
+          <img src="/static/img/post/{{ post[3] }}" class="card-img-top" alt="Post Image">
+          <div class="card-body">
+            <h6 class="card-title">{{ post[1] }}</h6>
+            <div class="post-username">By {{ post[4] }}</div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+function applyFilter(key, value) {
+    const params = new URLSearchParams(window.location.search);
+
+    // Always update the passed filter key
+    if (value) {
+      params.set(key, value);
+    } else {
+      params.delete(key); // If blank, remove key
+    }
+
+    // Optional: if user typed in search input and triggered category/sort
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && !params.get('search')) {
+      const searchVal = searchInput.value.trim();
+      if (searchVal) params.set('search', searchVal);
+    }
+
+    window.location.search = params.toString();
+  }
+</script>
+
+
+{% endblock %}

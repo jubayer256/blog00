@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block add_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/single-post.css') }}">
+{% endblock %}
+
+{% block add_content %}
+
+<!-- Post Content -->
+<div class="container">
+  <div class="post-header text-center">
+    <h1 class="fw-bold">{{ data[1] }}</h1>
+    <p class="post-meta">
+      By <strong>{{ data[4] }}</strong> | {{ data[7] | timestamp_to_datetime }} | Category: <span class="text-primary">{{ data[5] }}</span>
+    </p>
+  </div>
+  <div class="image-div">
+    <img src="/static/img/post/{{ data[3] }}" class="post-image" alt="Post image">
+  </div>
+
+  <div class="post-content">
+    <p>{{ data[2] | safe }}</p>
+  </div>
+
+  <!-- Like & Visit Section -->
+  <div class="interaction-bar d-flex align-items-center gap-4 my-4 justify-content-center">
+    <div class="visits text-muted">
+      <i class="fas fa-eye"></i> {{ data[9] }} views
+    </div>
+    <div class="likes">
+      <form method="POST" action="#">
+        <button type="submit" class="btn btn-outline-danger btn-sm">
+          <i class="fas fa-heart"></i> {{ data[10] }} likes
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Comment Section -->
+  <div class="comment-section mt-5">
+    <h5>Leave a comment</h5>
+    <form method="POST" action="/add_comment/{{ data[0] }}">
+      <textarea name="comment_text" rows="3" class="form-control mb-2" required></textarea>
+      <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+    </form>
+
+    <div class="comments mt-4">
+      {% for comment in comments %}
+
+        <div class="comment mb-3 p-3 border rounded bg-light position-relative">
+          <!-- 3-dot dropdown -->
+          {% if comment[2] == session["username"] %}
+          <div class="dropdown comment-menu position-absolute top-0 end-0">
+            <button class="btn btn-link text-dark p-1" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.2rem;">
+              &#x22EE;
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <form method="POST" action="/delete_comment/{{ comment[1] }}/{{ comment[0] }}">
+                  <button type="submit" class="dropdown-item text-danger">Delete</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+          {% endif %}
+
+          <strong>{{ comment[2] }}</strong>
+          <small class="text-muted">{{ comment[4] | timestamp_to_datetime }}</small>
+          <p class="mb-0 mt-1">{{ comment[3] }}</p>
+        </div>
+
+      {% else %}
+        <p class="text-muted">No comments yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
