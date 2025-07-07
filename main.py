@@ -228,5 +228,3 @@ def update_profile():
     db.update_profile(name, email, username, gender)
     return redirect("/profile")
 
-
-app.run()
