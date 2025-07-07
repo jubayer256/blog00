@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block add_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/admin-users.css') }}">
+{% endblock %}
+
+{% block add_content %}
+
+<div class="admin-wrapper d-flex">
+  <!-- Sidebar -->
+  <div class="sidebar p-3">
+    <h4 class="mb-4">Admin</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a href="/admin" class="nav-link"><i class="bi bi-journal-text me-2"></i> Posts</a></li>
+      <li class="nav-item"><a href="/admin/users" class="nav-link active"><i class="bi bi-people me-2"></i> Users</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-flag me-2"></i> Reports</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-envelope me-2"></i> Contacts</a></li>
+    </ul>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Top Filter/Search Row -->
+    <div class="row mb-4 align-items-center g-2">
+      <div class="col-md-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search users...">
+      </div>
+      <div class="col-md-2">
+        <select class="form-select">
+          <option selected>All Roles</option>
+          <option>Admin</option>
+          <option>User</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <select class="form-select">
+          <option selected>Status</option>
+          <option>Active</option>
+          <option>Banned</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <select class="form-select">
+          <option selected>Sort By</option>
+          <option>Date Joined</option>
+          <option>Username</option>
+        </select>
+      </div>
+      <div class="col-md-3 text-end">
+        <button class="btn btn-outline-primary">Filter</button>
+      </div>
+    </div>
+
+    <!-- Users Table -->
+    <h3 class="mb-3">All Users</h3>
+    <table class="table table-bordered table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th style="width: 400px;">Email</th>
+          <th>Gender</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Joined</th>
+          <th style="width: 160px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ user[1] }}</td>
+          <td>{{ user[2] }}</td>
+          <td>{{ user[3] }}</td>
+          <td>{{ user[5] }}</td>
+          <td>{{ user[6] }}</td>
+          <td>
+            {% if user[8] == "Active" %}
+              <span class="badge bg-success">{{ user[8] }}</span>
+            {% else %}
+              <span class="badge bg-danger">{{ user[8] }}</span>
+            {% endif %}
+          </td>
+          <td>{{ user[7] | timestamp_to_date }}</td>
+          <td>
+            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+            <a href="#" class="btn btn-sm btn-secondary">Disable</a>
+          </td>
+        </tr>
+        {% endfor %}
+        <!-- Repeat rows dynamically -->
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <nav aria-label="User pagination">
+      <ul class="pagination justify-content-center mt-4">
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script>
+  function applyFilters() {
+    const search = document.getElementById('searchInput').value.trim();
+    const category = document.getElementById('categorySelect').value;
+    const sort = document.getElementById('sortSelect').value;
+
+    const params = new URLSearchParams();
+
+    if (search) params.append('search', search);
+    if (category) params.append('category', category);
+    if (sort) params.append('sort', sort);
+
+    window.location.href = `?${params.toString()}`;
+  }
+</script>
+
+{% endblock %}
+
